@@ -5,7 +5,7 @@ import {
   BrowserRouter as  Router, 
   Routes, 
   Route,
-  Redirect} from "react-router-dom"
+  Navigate} from "react-router-dom"
 import Auth from './pages/Auth'
 import Home  from './pages/Home'
 
@@ -21,10 +21,11 @@ function App() {
       exact path='/'
       element={<Home/>}
       />
-      <Redirect path='/'
-      to='/auth'
-      />
-      </Routes>
+      <Route path='/'
+       elemen={ <Navigate to='/auth'/>}
+       />
+  
+        </Routes>
     </Router>
     
   );
