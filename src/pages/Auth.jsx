@@ -8,17 +8,36 @@ export default function Auth() {
     <div>
       <input value={usuario} onChange={(e) => setUsuario(e.target.value)} />
       <input value={senha} onChange={(e) => setSenha(e.target.value)} />
-      <button>Login</button>
-      <button>signUp</button>
+      <button onClick={() => login(usuario, senha)}>Login</button>
+      <button onClick={() => signUp(usuario, senha)}>signUp</button>
 
     </div>
   )
 }
 
-function Login(usuario, senha){
+async function login(usuario, senha){
+  try{
+    const {error} = await supabase.auth.signIn(usuario, senha)
+    if(error) throw error
+    alert('Logado')
+    history.push('/')
+  }
+  catch(error){
+    alert(error.message)
+  }
 
 }
 
-function signUp(usuario, senha){
+const signUp = async (usuario, senha, history) => {
+  try{
+    const {error} = await supabase.auth.signUp(usuario, senha)
+    if(error) throw error
+    alert('Logado')
+    history.push('/')
+  }
+  catch(error){
+    alert(error.message)
+  }
+
 
 }
