@@ -4,7 +4,8 @@ import './App.css'
 import { 
   BrowserRouter as  Router, 
   Routes, 
-  Route} from "react-router-dom"
+  Route,
+  Redirect} from "react-router-dom"
 import Auth from './pages/Auth'
 import Home  from './pages/Home'
 
@@ -17,8 +18,11 @@ function App() {
       element={<Auth/>}
       />
       <Route
-      path='/'
+      exact path='/'
       element={<Home/>}
+      />
+      <Redirect path='/'
+      to='/auth'
       />
       </Routes>
     </Router>
